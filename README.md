@@ -54,7 +54,7 @@ Users should be able to:
 ### Links
 
 - **Solution URL:** [github.com/gusanchefullstack/fsdev-job-listings-with-filtering](https://github.com/gusanchefullstack/fsdev-job-listings-with-filtering)
-- **Live Site:** *(Deploying to Vercel)*
+- **Live Site:** [fsdev-job-listings-with-filtering-d.vercel.app](https://fsdev-job-listings-with-filtering-d.vercel.app)
 
 ---
 
