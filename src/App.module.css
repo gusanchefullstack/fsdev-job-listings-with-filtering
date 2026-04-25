@@ -1,0 +1,49 @@
+.main {
+  padding-bottom: 2rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 1110px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.filterWrapper {
+  transform: translateY(-36px);
+  margin-bottom: -36px;
+}
+
+.listWrapper {
+  padding-top: 3.5rem;
+}
+
+.listWrapperFiltered {
+  padding-top: 1.5rem;
+}
+
+.attribution {
+  font-size: 0.6875rem;
+  text-align: center;
+  padding: 1rem;
+  color: var(--color-gray);
+}
+
+.attribution a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.attribution a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  .listWrapper {
+    padding-top: 0;
+  }
+
+  .listWrapperFiltered {
+    padding-top: 0;
+  }
+}
