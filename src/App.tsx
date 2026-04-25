@@ -3,19 +3,13 @@ import Header from './components/Header/Header'
 import FilterBar from './components/FilterBar/FilterBar'
 import JobList from './components/JobList/JobList'
 import { jobs } from './data/jobs'
-import type { Job } from './types/job'
+import { filterJobs } from './utils/filterJobs'
 import styles from './App.module.css'
-
-function getJobTags(job: Job): string[] {
-  return [job.role, job.level, ...job.languages, ...job.tools]
-}
 
 export default function App() {
   const [activeFilters, setActiveFilters] = useState<string[]>([])
 
-  const filteredJobs = jobs.filter((job) =>
-    activeFilters.every((f) => getJobTags(job).includes(f))
-  )
+  const filteredJobs = filterJobs(jobs, activeFilters)
 
   function addFilter(tag: string) {
     setActiveFilters((prev) => (prev.includes(tag) ? prev : [...prev, tag]))
