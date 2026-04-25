@@ -3,6 +3,7 @@
 A responsive job listing page that lets users filter positions by role, level, languages, and tools — built as a [Frontend Mentor challenge](https://www.frontendmentor.io/challenges/job-listings-with-filtering-ivstIPCt) using React 19, TypeScript, and Vite.
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![Tests](https://img.shields.io/badge/tests-38%20passed-brightgreen?logo=vitest)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript)
@@ -22,6 +23,7 @@ A responsive job listing page that lets users filter positions by role, level, l
   - [Continued Development](#continued-development)
   - [Useful Resources](#useful-resources)
   - [AI Collaboration](#ai-collaboration)
+- [Testing](#testing)
 - [Getting Started](#getting-started)
 - [Roadmap](#roadmap)
 - [Author](#author)
@@ -75,16 +77,27 @@ Users should be able to:
 
 ```
 src/
+├── __tests__/
+│   └── App.test.tsx      # Integration tests (filter state end-to-end)
 ├── components/
 │   ├── FilterBar/        # Active-filter chip strip with remove + clear
+│   │   └── __tests__/FilterBar.test.tsx
 │   ├── FilterTag/        # Clickable tag pill (adds to filter list)
+│   │   └── __tests__/FilterTag.test.tsx
 │   ├── Header/           # Decorative hero with SVG wave background
 │   ├── JobCard/          # Individual listing card (featured border, logo overlap)
+│   │   └── __tests__/JobCard.test.tsx
 │   └── JobList/          # Renders the filtered card collection
+│       └── __tests__/JobList.test.tsx
 ├── data/
 │   └── jobs.ts           # Typed re-export of data.json
+├── test/
+│   └── setup.ts          # jest-dom matchers setup
 ├── types/
 │   └── job.ts            # Job interface
+├── utils/
+│   ├── filterJobs.ts     # Pure filter logic (getJobTags, filterJobs)
+│   └── __tests__/filterJobs.test.ts
 ├── App.tsx               # Filter state + derived filtered list
 ├── App.module.css
 ├── index.css             # Global reset + CSS custom properties
@@ -158,7 +171,6 @@ All tag buttons carry `aria-label="Filter by ${label}"` and every remove button 
 - Add URL-based filter persistence so sharing a filtered URL shows the same results
 - Add animated transitions when cards enter/leave the filtered list (e.g. `@starting-style` or Framer Motion)
 - Explore `View Transitions API` for the filter-bar appearance
-- Write unit tests for the filtering logic with Vitest
 
 ### Useful Resources
 
@@ -176,6 +188,28 @@ This project was built in collaboration with **Claude Sonnet 4.6** (Anthropic) v
 - **CSS precision** — Claude translated design specs (logo overlap, filter-bar translateY, featured border) into working CSS after reviewing the reference screenshots side-by-side.
 - **What worked well** — The plan-before-code workflow prevented rework; browser automation let Claude verify hover states, filter logic, and responsive layouts at exact breakpoints without leaving the terminal.
 - **What to watch** — AI-generated CSS sometimes needs a second pass at exact pixel values — always verify visually rather than trusting computed estimates alone.
+
+---
+
+## Testing
+
+The project uses **Vitest** and **React Testing Library** for unit and integration tests.
+
+```bash
+npm test          # single run
+npm run test:watch  # watch mode
+```
+
+**38 tests across 6 test files:**
+
+| File | Tests | Coverage |
+|---|---|---|
+| `utils/__tests__/filterJobs.test.ts` | 11 | `getJobTags`, `filterJobs` — AND logic, empty arrays, language/tool matching |
+| `components/FilterTag/__tests__/FilterTag.test.tsx` | 3 | Renders, aria-label, click callback |
+| `components/FilterBar/__tests__/FilterBar.test.tsx` | 6 | Empty state, chips, remove per tag, clear button |
+| `components/JobCard/__tests__/JobCard.test.tsx` | 7 | All fields, New/Featured badges, tag list, logo alt |
+| `components/JobList/__tests__/JobList.test.tsx` | 3 | Card count, empty state, callback pass-through |
+| `__tests__/App.test.tsx` | 8 | Initial load, add/remove/clear filters, no-dup, AND logic |
 
 ---
 
@@ -221,9 +255,9 @@ npm run preview # local preview of the production build
 - [x] Remove individual filters / Clear all
 - [x] Hover states on all interactive elements
 - [x] Accessible markup (ARIA labels, focus-visible)
+- [x] Unit tests with Vitest (38 tests, 6 files)
 - [ ] URL-based filter persistence
 - [ ] Animated card enter/leave transitions
-- [ ] Unit tests with Vitest
 
 ---
 
