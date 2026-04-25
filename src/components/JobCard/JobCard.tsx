@@ -4,10 +4,11 @@ import styles from './JobCard.module.css'
 
 interface JobCardProps {
   job: Job
+  activeFilters: string[]
   onAddFilter: (tag: string) => void
 }
 
-export default function JobCard({ job, onAddFilter }: JobCardProps) {
+export default function JobCard({ job, activeFilters, onAddFilter }: JobCardProps) {
   const tags = [job.role, job.level, ...job.languages, ...job.tools]
 
   return (
@@ -42,7 +43,12 @@ export default function JobCard({ job, onAddFilter }: JobCardProps) {
 
         <div className={styles.tags} aria-label="Filter tags">
           {tags.map((tag) => (
-            <FilterTag key={tag} label={tag} onAdd={onAddFilter} />
+            <FilterTag
+              key={`${job.id}-${tag}`}
+              label={tag}
+              isActive={activeFilters.includes(tag)}
+              onAdd={onAddFilter}
+            />
           ))}
         </div>
       </div>

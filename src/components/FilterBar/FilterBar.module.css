@@ -80,9 +80,16 @@
   outline-offset: 2px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .bar {
     padding: 1rem 1.25rem;
     flex-wrap: wrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .removeBtn,
+  .clearBtn {
+    transition: none;
   }
 }

@@ -4,7 +4,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 156px;
+  height: 9.75rem;
 }
 
 .srOnly {
@@ -19,9 +19,9 @@
   border: 0;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .header {
     background-image: url('/images/bg-header-mobile.svg');
-    height: 156px;
+    height: 9.75rem;
   }
 }

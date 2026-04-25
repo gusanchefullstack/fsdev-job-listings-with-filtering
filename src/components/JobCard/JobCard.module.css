@@ -18,8 +18,8 @@
 }
 
 .logo {
-  width: 88px;
-  height: 88px;
+  width: 5.5rem;
+  height: 5.5rem;
   border-radius: 50%;
   object-fit: contain;
   flex-shrink: 0;
@@ -113,7 +113,7 @@
 }
 
 /* Tablet and Desktop */
-@media (min-width: 768px) {
+@media (min-width: 48rem) {
   .card {
     flex-direction: row;
     align-items: center;
@@ -150,7 +150,7 @@
 }
 
 /* Mobile — logo overlaps top of card */
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .card {
     padding: 2rem 1.5rem 1.5rem;
     margin-top: 2.5rem;
@@ -159,12 +159,18 @@
   .logoWrapper {
     display: flex;
     position: absolute;
-    top: -24px;
+    top: -1.5rem;
     left: 1.5rem;
   }
 
   .logo {
-    width: 48px;
-    height: 48px;
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .position {
+    transition: none;
   }
 }

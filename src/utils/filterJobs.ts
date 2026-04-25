@@ -6,5 +6,8 @@ export function getJobTags(job: Job): string[] {
 
 export function filterJobs(jobs: Job[], activeFilters: string[]): Job[] {
   if (activeFilters.length === 0) return jobs
-  return jobs.filter((job) => activeFilters.every((f) => getJobTags(job).includes(f)))
+  return jobs.filter((job) => {
+    const tags = getJobTags(job)
+    return activeFilters.every((f) => tags.includes(f))
+  })
 }

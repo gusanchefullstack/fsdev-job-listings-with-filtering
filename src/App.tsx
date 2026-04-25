@@ -23,10 +23,17 @@ export default function App() {
     setActiveFilters([])
   }
 
+  const liveMessage = activeFilters.length > 0
+    ? `${filteredJobs.length} job${filteredJobs.length === 1 ? '' : 's'} found for ${activeFilters.join(', ')}`
+    : `Showing all ${filteredJobs.length} jobs`
+
   return (
     <>
       <Header />
       <main className={styles.main}>
+        <div aria-live="polite" aria-atomic="true" className={styles.srOnly}>
+          {liveMessage}
+        </div>
         <div className={styles.container}>
           {activeFilters.length > 0 && (
             <div className={styles.filterWrapper}>
@@ -38,7 +45,7 @@ export default function App() {
             </div>
           )}
           <div className={activeFilters.length > 0 ? styles.listWrapperFiltered : styles.listWrapper}>
-            <JobList jobs={filteredJobs} onAddFilter={addFilter} />
+            <JobList jobs={filteredJobs} activeFilters={activeFilters} onAddFilter={addFilter} />
           </div>
         </div>
       </main>

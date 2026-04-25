@@ -22,4 +22,19 @@ describe('FilterTag', () => {
     expect(onAdd).toHaveBeenCalledOnce()
     expect(onAdd).toHaveBeenCalledWith('Junior')
   })
+
+  it('has aria-pressed="false" when not active', () => {
+    render(<FilterTag label="Frontend" isActive={false} onAdd={vi.fn()} />)
+    expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'false')
+  })
+
+  it('has aria-pressed="true" when active', () => {
+    render(<FilterTag label="Frontend" isActive={true} onAdd={vi.fn()} />)
+    expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'true')
+  })
+
+  it('defaults aria-pressed to false when isActive is omitted', () => {
+    render(<FilterTag label="CSS" onAdd={vi.fn()} />)
+    expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'false')
+  })
 })

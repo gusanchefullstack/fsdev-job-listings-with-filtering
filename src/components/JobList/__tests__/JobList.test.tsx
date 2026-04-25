@@ -23,12 +23,12 @@ const makeJob = (id: number, company: string): Job => ({
 describe('JobList', () => {
   it('renders a card for each job', () => {
     const jobs = [makeJob(1, 'Acme'), makeJob(2, 'Globex'), makeJob(3, 'Initech')]
-    render(<JobList jobs={jobs} onAddFilter={vi.fn()} />)
+    render(<JobList jobs={jobs} activeFilters={[]} onAddFilter={vi.fn()} />)
     expect(screen.getAllByRole('article')).toHaveLength(3)
   })
 
   it('shows empty-state message when jobs list is empty', () => {
-    render(<JobList jobs={[]} onAddFilter={vi.fn()} />)
+    render(<JobList jobs={[]} activeFilters={[]} onAddFilter={vi.fn()} />)
     expect(
       screen.getByText('No job listings match your current filters.')
     ).toBeInTheDocument()
@@ -36,8 +36,13 @@ describe('JobList', () => {
 
   it('passes onAddFilter down so tag clicks fire the callback', async () => {
     const onAddFilter = vi.fn()
-    render(<JobList jobs={[makeJob(1, 'Acme')]} onAddFilter={onAddFilter} />)
+    render(<JobList jobs={[makeJob(1, 'Acme')]} activeFilters={[]} onAddFilter={onAddFilter} />)
     await userEvent.click(screen.getByRole('button', { name: /filter by frontend/i }))
     expect(onAddFilter).toHaveBeenCalledWith('Frontend')
+  })
+
+  it('renders a visually hidden "Job listings" heading', () => {
+    render(<JobList jobs={[makeJob(1, 'Acme')]} activeFilters={[]} onAddFilter={vi.fn()} />)
+    expect(screen.getByRole('heading', { name: 'Job listings' })).toBeInTheDocument()
   })
 })
