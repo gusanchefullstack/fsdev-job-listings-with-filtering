@@ -1,0 +1,50 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-primary: hsl(180, 29%, 50%);
+  --color-bg: hsl(180, 52%, 96%);
+  --color-gray: hsl(180, 8%, 52%);
+  --color-dark: hsl(180, 14%, 20%);
+  --color-white: #ffffff;
+  --color-tag-bg: hsl(180, 52%, 93%);
+  --color-featured-border: hsl(180, 29%, 50%);
+  --color-filter-chip-bg: hsl(180, 31%, 95%);
+  --color-filter-remove-bg: hsl(180, 14%, 20%);
+
+  --font-family: 'League Spartan', sans-serif;
+  --font-size-base: 15px;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  --radius-tag: 4px;
+  --radius-card: 8px;
+  --radius-chip: 4px;
+}
+
+html {
+  font-size: var(--font-size-base);
+}
+
+body {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-medium);
+  background-color: var(--color-bg);
+  color: var(--color-dark);
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
