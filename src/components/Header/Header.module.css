@@ -1,0 +1,27 @@
+.header {
+  background-color: var(--color-primary);
+  background-image: url('/images/bg-header-desktop.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 156px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 767px) {
+  .header {
+    background-image: url('/images/bg-header-mobile.svg');
+    height: 156px;
+  }
+}
